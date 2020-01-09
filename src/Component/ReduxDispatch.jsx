@@ -25,6 +25,18 @@ class ReduxDispatch extends Component {
       postId: this.state.postId + 1
     });
   };
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(response => response.json())
+        .then(json => {
+            this.props.dispatch({
+                type: "GET_POST",
+                payload: json
+            });
+        });
+}
+
   render() {
     return (
       <div>

@@ -1,7 +1,10 @@
 import { createStore } from "redux";
 
 const initialState = {
-  posts: [{id:1,title:"Post One"},{id:2,title:"Post Two"}],
+  posts: [
+    { id: 1, title: "Post One" },
+    { id: 2, title: "Post Two" }
+  ],
   signUpModel: {
     open: false
   }
@@ -10,9 +13,16 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   if (action.type === "ADD_POST") {
     // state.posts.push(action.payload);
-    return Object.assign({},state,{
-        posts:state.posts.concat(action.payload)
+    return Object.assign({}, state, {
+      posts: state.posts.concat(action.payload)
     });
+  }
+
+  if (action.type === "GET_POST") {
+    return {
+      ...state,
+      posts: state.posts.concat(action.payload)
+    };
   }
   return state;
 };
